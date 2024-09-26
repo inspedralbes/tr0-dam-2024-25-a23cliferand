@@ -2,7 +2,7 @@
   <div>
     <h1>{{ greeting }}</h1>
 
-    <div v-if="preguntes && preguntes.length">
+    <div v-if="preguntes && preguntes.length > 0">
       <div v-for="(preguntaItem, index) in preguntes" :key="index">
         <h2>{{ preguntaItem.pregunta }}</h2>
         
@@ -29,15 +29,23 @@
 </template>
 
 <script setup>
-if(localStorage.getItem('darkMode') == 'enabled'){
-    document.body.classList.toggle('dark-theme');
-  }
-import { ref } from 'vue'
-import data from './assets/all.json'
+
+import { reactive, ref, onBeforeMount } from 'vue'
+
+const preguntes = ref()
 
 
-const greeting = ref('Benvingut al qüestionari!')
-const preguntes = ref(data.preguntes)
+onBeforeMount(() => {
+  console.log("Create")
+
+  fetch('http://localhost:3000/getQuestions')
+    .then(response => response.json())
+    .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value); console.log(preguntes.value.length)
+    })
+})
+
+const greeting = ref('Title Example')
+
 </script>
 
 <style scoped>
