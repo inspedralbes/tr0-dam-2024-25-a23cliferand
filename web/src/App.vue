@@ -7,7 +7,7 @@
         <h2>{{ preguntaItem.pregunta }}</h2>
         
         <img class="marca" v-if="preguntaItem.imatge" :src="preguntaItem.imatge" alt="Imatge de la pregunta" width="150" />
-
+a<z
         <table>
           <tr v-for="resposta in preguntaItem.respostes" :key="resposta.id">
             {{ resposta.resposta }} <img v-if="resposta.correcta" src="./../public/checked.png" width="10"/>
