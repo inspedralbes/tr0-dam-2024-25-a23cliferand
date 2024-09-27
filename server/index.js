@@ -20,27 +20,64 @@ let preguntes = data.preguntes;
 
 app.use(express.json());
 app.use(cors());
+
+
 app.get('/getQuestions', (req, res) => {
   
     res.json(data);
 
 });
 
-app.get('/SEX', (req, res) => {
-  
-    const num = req.query.num;
-    
-    let preguntesPaMostrar = [];
-  
-    for (i = 0; i < num; i++) {
-      let valor = preguntes[i];
-      preguntesPaMostrar.push(valor.pregunta);
-      preguntesPaMostrar.push(valor.respostes);
-      preguntesPaMostrar.push(valor.imatge);
+//app.put('/putQuestions/:id', (req, res) => {
+//
+//  const nuevasPreguntes = JSON.stringify(req.body);
+
+
+//  fs.writeFile('src/assets/js/myScript.js', nuevasPreguntes, (err) => {
+//if (err) {
+//  console.error('Error al sobrescribir el archivo:', err);
+//    } else {
+//      console.log('Archivo sobrescrito con éxito');
+//    }
+//  })
+//});
+
+app.put('/putQuestions/:id', (req, res) => {
+
+  const nuevasPreguntes = JSON.stringify(req.body);
+
+
+  fs.writeFile('src/assets/js/myScript.js', nuevasPreguntes, (err) => {
+    if (err) {
+      console.error('Error al sobrescribir el archivo:', err);
+    } else {
+      console.log('Archivo sobrescrito con éxito');
     }
-  
-    res.json(preguntesPaMostrar);
+  })
 });
+
+app.delete('/deleteQuestions/:id', (req, res) =>{
+
+    const id = parseInt(req.params.id); 
+
+    fs.readFile('./all.json', 'utf8', (err, data) => {
+      if (err) {
+        res.status('Error al leer el archivo:', err);
+      }
+  
+      let objetos = JSON.parse(data);
+  
+      objetos = objetos.filter(objeto => objeto.id !== id);
+
+      fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
+        if (err) {
+          res.status('Error al sobrescribir el archivo:', err);
+        } else {
+          res.status(`Objeto con ID ${id} eliminado con éxito.`);
+        }
+      })
+    })
+})
 
 
 app.listen(port, () => {
