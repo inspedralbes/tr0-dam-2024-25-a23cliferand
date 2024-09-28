@@ -14,16 +14,13 @@ const app = express();
 
 const port = 3000;
 
-const data =  JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
-
-let preguntes = data.preguntes;
-
 app.use(express.json());
 app.use(cors());
 
 
 app.get('/getQuestions', (req, res) => {
   
+  const data =  JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
     res.json(data);
 
 });
@@ -44,7 +41,7 @@ app.get('/getQuestions', (req, res) => {
 
 app.put('/putQuestions/:id', (req, res) => {
 
-  const nuevasPreguntes = JSON.stringify(req.body);
+  const nuevasPreguntes = JSON.stringify(req.body.values);
 
 
   fs.writeFile('src/assets/js/myScript.js', nuevasPreguntes, (err) => {
@@ -54,6 +51,36 @@ app.put('/putQuestions/:id', (req, res) => {
       console.log('Archivo sobrescrito con éxito');
     }
   })
+});
+
+app.put('/updateQuestions/:id', (req, res) => {
+
+  const id = parseInt(req.params.id);
+
+  const updateQuestion = JSON.stringify(req.body);
+
+    fs.readFile('./all.json', 'utf8', (err, data) => {
+      if (err) {
+        res.status('Error al leer el archivo:', err);
+      }
+  
+      let objetos = JSON.parse(data);
+  
+      objetos.preguntes = objetos.preguntes.map(pregunta => pregunta.id === id ? JSON.parse(updateQuestion) : pregunta);
+
+      objetos = JSON.stringify(objetos);
+
+      objetos = JSON.parse(objetos);
+
+      fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
+        if (err) {
+          res.status('Error al sobrescribir el archivo:', err);
+        } else {
+          res.status(`Objeto con ID ${id} update.`);
+          (objetos)
+        }
+      })
+    })
 });
 
 app.delete('/deleteQuestions/:id', (req, res) =>{
@@ -67,13 +94,14 @@ app.delete('/deleteQuestions/:id', (req, res) =>{
   
       let objetos = JSON.parse(data);
   
-      objetos = objetos.filter(objeto => objeto.id !== id);
+      objetos.preguntes = objetos.preguntes.filter(objeto => objeto.id !== id);
 
       fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
         if (err) {
           res.status('Error al sobrescribir el archivo:', err);
         } else {
           res.status(`Objeto con ID ${id} eliminado con éxito.`);
+          res.set("Connection", "close");
         }
       })
     })
