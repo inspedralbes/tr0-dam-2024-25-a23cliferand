@@ -10,6 +10,7 @@ const cors = require('cors')
 const express = require('express');
 const fs = require('fs');
 const app = express();
+const path = require('path');
 
 
 const port = 3000;
@@ -25,19 +26,18 @@ app.get('/getQuestions', (req, res) => {
 
 });
 
-//app.put('/putQuestions/:id', (req, res) => {
-//
-//  const nuevasPreguntes = JSON.stringify(req.body);
+app.get('/getQuestionsAndroid', (req, res) => {
+  const data = JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
+  let preguntes = data.preguntes;
 
+  for (let i = 0; i < preguntes.length; i++) {
+    for (let x = 0; x < preguntes[i].respostes.length; x++) {
+      delete preguntes[i].respostes[x].correcta; 
+    }
+  }
 
-//  fs.writeFile('src/assets/js/myScript.js', nuevasPreguntes, (err) => {
-//if (err) {
-//  console.error('Error al sobrescribir el archivo:', err);
-//    } else {
-//      console.log('Archivo sobrescrito con éxito');
-//    }
-//  })
-//});
+  res.json(preguntes);
+});
 
 app.put('/putQuestions/:id', (req, res) => {
 
@@ -107,6 +107,19 @@ app.delete('/deleteQuestions/:id', (req, res) =>{
     })
 })
 
+    
+app.get('/getImage/:route', (req, res) => {
+  const route = req.params.route; 
+
+  const imagePath = path.join(__dirname, 'images', route);
+
+  res.sendFile(imagePath, (err) => {
+      if (err) {
+          console.error(err);
+          res.status(404).send('Imagen no encontrada');
+      }
+  });
+});
 
 app.listen(port, () => {
   console.log("Port: " + port);

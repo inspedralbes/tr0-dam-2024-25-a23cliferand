@@ -6,7 +6,7 @@
       <div v-for="(preguntaItem, index) in preguntes" :key="preguntaItem.id">
         <h2>{{ preguntaItem.pregunta }}</h2>
         <br>
-        <img class="marca" v-if="preguntaItem.imatge" :src="preguntaItem.imatge" alt="Imatge de la pregunta" width="150" />
+        <img class="marca" v-if="preguntaItem.imatge" :src="getImageUrl(preguntaItem.imatge)" alt="Imatge" width="150" />
         <br>
         <br>
         <table>
@@ -42,7 +42,7 @@
                 <input v-model="resposta.resposta" :id="'respuesta-' + id" placeholder="Editar respuesta" class="input-field" />
               </div>
             <label class="checkbox-label">
-            Correcta:
+            Correcta: 
             <input type="checkbox" v-model="resposta.correcta" />
           </label>
         </div>
@@ -72,6 +72,17 @@ let preguntaEditada = ref(null);
 import {  ref, onBeforeMount } from 'vue'
 
 const preguntes = ref()
+
+const getImageUrl = (imageName) => {
+  //Foto default
+  if(imageName == "???"){
+    return `http://localhost:3000/getImage/noimage.jpg`;
+
+  }
+
+  return `http://localhost:3000/getImage/${imageName}`;
+};
+
 
 onBeforeMount(() => {
   console.log("Create")
