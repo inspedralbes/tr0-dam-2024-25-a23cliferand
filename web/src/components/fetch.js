@@ -21,8 +21,6 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
         },
      body: nuevaPregunta
     })
-
-    return nuevaPregunta
 };
 
 export async function updateQuestion(id, preguntaEditada){

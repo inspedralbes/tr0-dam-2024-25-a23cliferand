@@ -48,7 +48,7 @@
         </div>
       </div>
         <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaEditable = null, volverPregunta(id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaEditable = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
       </div>
     </div>
 
@@ -119,10 +119,6 @@ function mostrarFormularioEdit(id){
       preguntaEditada.value = JSON.parse(JSON.stringify(preguntes.value[id]));
 };
 
-function volverPregunta(id){
-      preguntaEditada.value = preguntaOriginal.value;
-};
-
 
 const preguntaPlatilla = ref({
   id: 0,
@@ -158,10 +154,11 @@ function EliminarQuestion(id){
   console.log(preguntes)
   };
 
-function PreguntaNueva(){
-  preguntes.push(fetchFunctions.guardarPreguntaNueva(preguntaPlatilla));
+  function PreguntaNueva(){
+  fetchFunctions.guardarPreguntaNueva(preguntaPlatilla);
   console.log(preguntes)
   preguntaCrear.value = null;
+  window.location.reload()
 
 }; 
 
