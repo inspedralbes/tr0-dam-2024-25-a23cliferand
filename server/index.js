@@ -11,12 +11,13 @@ const express = require('express');
 const fs = require('fs');
 const app = express();
 const path = require('path');
+const { stringify } = require('querystring');
 
 
 const port = 3000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors()); 
 
 
 app.get('/getQuestions', (req, res) => {
@@ -39,19 +40,38 @@ app.get('/getQuestionsAndroid', (req, res) => {
   res.json(preguntes);
 });
 
-app.put('/putQuestions/:id', (req, res) => {
+app.put('/addQuestion', (req, res) => {
+  const newQuestion = req.body;
 
-  const nuevasPreguntes = JSON.stringify(req.body.values);
-
-
-  fs.writeFile('src/assets/js/myScript.js', nuevasPreguntes, (err) => {
+  fs.readFile("./all.json", 'utf8', (err, data) => {
     if (err) {
-      console.error('Error al sobrescribir el archivo:', err);
-    } else {
-      console.log('Archivo sobrescrito con éxito');
+      console.error('Error al leer el archivo:', err);
+      return res.status(500).send('Error al leer el archivo.');
     }
-  })
+
+    let questions = [];
+    questions = JSON.parse(data);
+    console.log(questions)
+    const existingIds = questions.preguntes.map(x => x.id);
+    const newId = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
+    newQuestion.id = newId;
+
+    questions.preguntes.push(newQuestion);
+
+    console.log(newQuestion)
+
+    fs.writeFile("./all.json", JSON.stringify(questions, null, 2), (writeErr) => {
+     if (writeErr) {
+        console.error('Error al sobrescribir el archivo:', writeErr);
+        return res.status(500).send('Error al sobrescribir el archivo.');
+      }
+
+      console.log('Archivo sobrescrito con éxito');
+      return res.status(200).send('Pregunta agregada con éxito.');
+    });
+  });
 });
+ 
 
 app.put('/updateQuestions/:id', (req, res) => {
 
@@ -103,9 +123,9 @@ app.delete('/deleteQuestions/:id', (req, res) =>{
           res.status(`Objeto con ID ${id} eliminado con éxito.`);
           res.set("Connection", "close");
         }
-      })
-    })
-})
+      });
+    });
+  });
 
     
 app.get('/getImage/:route', (req, res) => {
