@@ -92,14 +92,15 @@ app.put('/updateQuestions/:id', (req, res) => {
 
       objetos = JSON.parse(objetos);
 
-      fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
-        if (err) {
-          res.status('Error al sobrescribir el archivo:', err);
-        } else {
-          res.status(`Objeto con ID ${id} update.`);
-          (objetos)
-        }
-      })
+      fs.writeFile("./all.json", JSON.stringify(objetos, null, 2), (writeErr) => {
+        if (writeErr) {
+           console.error('Error al sobrescribir el archivo:', writeErr);
+           return res.status(500).send('Error al sobrescribir el archivo.');
+         }
+   
+         console.log('Pregunta actualizada con éxito.');
+         return res.status(200).send('Pregunta actualizada con éxito.');
+       });
     })
 });
 
@@ -121,7 +122,6 @@ app.delete('/deleteQuestions/:id', (req, res) =>{
           res.status('Error al sobrescribir el archivo:', err);
         } else {
           res.status(`Objeto con ID ${id} eliminado con éxito.`);
-          res.set("Connection", "close");
         }
       });
     });

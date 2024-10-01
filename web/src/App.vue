@@ -17,7 +17,7 @@
         
         <br>
         <button @click="mostrarFormularioEdit(preguntaItem.id - 1)" style="margin: 1em auto" class="btn">Modificar</button>
-        <button @click="confirmarEliminar(preguntaItem.id)" style="margin: 1em auto" class="btn">Borrar</button>
+        <button @click="EliminarQuestion(preguntaItem.id)" style="margin: 1em auto" class="btn">Borrar</button>
         
         <br>
 
@@ -48,7 +48,7 @@
         </div>
       </div>
         <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaEditable = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaEditable = null, volverPregunta(id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
       </div>
     </div>
 
@@ -79,8 +79,8 @@
             <input type="checkbox" v-model="resposta.correcta" />
           </label>
         </div>
-        <button @click="preguntaCrear = null, guardarPreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaCrear = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaCrear = null, PreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
+        <button @click="preguntaCrear = null" class="confirm">Cancelar</button>
       </div>
       </div>
   </div>
@@ -98,6 +98,7 @@ import { ref, onBeforeMount } from 'vue';
 
 import * as fetchFunctions from './components/fetch.js';
 
+let preguntaOriginal = ref(null); 
 const preguntaEditable = ref(null);
 const preguntaABorrar = ref(null);
 let preguntaEditada = ref(null); 
@@ -109,31 +110,31 @@ const preguntes = ref()
 onBeforeMount(() => {
   console.log("Create")
 
-  fetch('http://localhost:3000/getQuestions')
-    .then(response => response.json())
-    .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value); console.log(preguntes.value.length)
-    })
-    console.log("sex: " + preguntaCrear)
+  fetchFunctions.getWeb(preguntes)
 })
 
 function mostrarFormularioEdit(id){
       preguntaEditable.value = id;
+      preguntaOriginal.value = JSON.parse(JSON.stringify(preguntes.value[id]));
       preguntaEditada.value = JSON.parse(JSON.stringify(preguntes.value[id]));
-    };
+};
+
+function volverPregunta(id){
+      preguntaEditada.value = preguntaOriginal.value;
+};
 
 
-
-    const preguntaPlatilla = ref({
-      id: 0,
-      pregunta: "",
-      respostes: [
-        { id: 1, resposta: "", correcta: false },
-        { id: 2, resposta: "", correcta: false },
-        { id: 3, resposta: "", correcta: false },
-        { id: 4, resposta: "", correcta: false }
-      ],
-      imatge: "???"
-    });
+const preguntaPlatilla = ref({
+  id: 0,
+  pregunta: "",
+  respostes: [
+     { id: 1, resposta: "", correcta: false },
+     { id: 2, resposta: "", correcta: false },
+     { id: 3, resposta: "", correcta: false },
+     { id: 4, resposta: "", correcta: false }
+    ],
+  imatge: "???"
+});
 
     function guardarCambios(id){
     
@@ -141,45 +142,29 @@ function mostrarFormularioEdit(id){
       
     updatePreg = updatePreg.find(objeto => objeto.id == id);
     
+    console.log(updatePreg)
+    
     updatePreg = JSON.stringify(updatePreg)
     
-    fetch(`http://localhost:3000/updateQuestions/` + id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json' 
-        },
-     body: updatePreg
-    })
-    console.log(updatePreg)
+    fetchFunctions.updateQuestion(id, updatePreg)
+
     preguntaEditable.value = null;
 };
 
+function EliminarQuestion(id){
+  fetchFunctions.Eliminar(id);
+  console.log(preguntes.value)
+  preguntes.value = preguntes.value.filter(pregunta => pregunta.id !== id);
+  console.log(preguntes)
+  };
 
-function guardarPreguntaNueva(){
+function PreguntaNueva(){
+  preguntes.push(fetchFunctions.guardarPreguntaNueva(preguntaPlatilla));
+  console.log(preguntes)
+  preguntaCrear.value = null;
 
-  let nuevaPregunta = preguntaPlatilla.value
-    
-    nuevaPregunta = JSON.stringify(nuevaPregunta)
-    
-    
-    fetch(`http://localhost:3000/addQuestion`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json' 
-        },
-     body: nuevaPregunta
-    })
-    preguntaEditable.value = null;
-};
+}; 
 
-function confirmarEliminar(id){
-      fetch(`http://localhost:3000/deleteQuestions/` + id, {
-        method: 'DELETE',
-      })
-      .then(res => console.log(res))
-      .catch(error => console.error('Error:', error));
-      fetchFunctions.getWeb(preguntes);
-    };
 </script>
 
 
