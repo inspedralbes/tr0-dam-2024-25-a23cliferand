@@ -17,8 +17,7 @@
         
         <br>
         <button @click="mostrarFormularioEdit(preguntaItem.id - 1)" style="margin: 1em auto" class="btn">Modificar</button>
-        <button @click="EliminarQuestion(preguntaItem.id)" style="margin: 1em auto" class="btn">Borrar</button>
-        
+        <button @click="EliminarQuestion(preguntaItem.id)" style="margin: 1em auto" class="btn">Borrar</button>        
         <br>
 
         <!-- Formulario pa editar -->
@@ -48,7 +47,7 @@
         </div>
       </div>
         <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaEditable = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id - 1), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
       </div>
     </div>
 
@@ -56,7 +55,7 @@
 
     <!-- Formulario pa crear -->
     <div v-if="preguntaCrear" class="pregunta-edit-container">
-          <h3>Crear Pregunta</h3>
+          <h3> Crear Pregunta</h3>
           <div class="form-group">
               <label for="pregunta">Pregunta:</label>
               <input v-model="preguntaPlatilla.pregunta" id="pregunta" placeholder="Editar pregunta" class="input-field" />
@@ -80,7 +79,7 @@
           </label>
         </div>
         <button @click="preguntaCrear = null, PreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaCrear = null" class="confirm">Cancelar</button>
+        <button @click="preguntaCrear = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
       </div>
       </div>
   </div>
@@ -154,13 +153,29 @@ function EliminarQuestion(id){
   console.log(preguntes)
   };
 
-  function PreguntaNueva(){
-  fetchFunctions.guardarPreguntaNueva(preguntaPlatilla);
+  async function PreguntaNueva(){
+  await fetchFunctions.guardarPreguntaNueva(preguntaPlatilla);
   console.log(preguntes)
   preguntaCrear.value = null;
-  window.location.reload()
+  preguntes.value.push(preguntaPlatilla.value)
+  console.log(preguntes)
+  //window.location.reload()
+  preguntaPlatilla.value = {
+        id: 0,
+        pregunta: "",
+        respostes: [
+            { id: 1, resposta: "", correcta: false },
+            { id: 2, resposta: "", correcta: false },
+            { id: 3, resposta: "", correcta: false },
+            { id: 4, resposta: "", correcta: false }
+        ],
+        imatge: "???"
+    };
+  }
 
-}; 
+function restaurarPreguntas(id) {
+  preguntes.value[id] = JSON.parse(JSON.stringify(preguntaOriginal.value));
+}
 
 </script>
 

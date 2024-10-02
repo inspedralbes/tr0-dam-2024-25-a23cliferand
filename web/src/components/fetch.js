@@ -4,7 +4,7 @@ export function getImageUrl(imageName){
       return `http://localhost:3000/getImage/noimage.jpg`;
     }
   
-    return `http://localhost:3000/getImage/${imageName}`;
+    return imageName;
   };
 
 export async function guardarPreguntaNueva(preguntaPlatilla){
@@ -39,7 +39,7 @@ export async function updateQuestion(id, preguntaEditada){
 export async function getWeb(preguntes){
     fetch('http://localhost:3000/getQuestions')
         .then(response => response.json())
-        .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value); console.log(preguntes.value.length)
+        .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value);
         })
         //window.location.reload()
     };
