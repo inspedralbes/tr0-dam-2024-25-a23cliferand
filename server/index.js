@@ -6,12 +6,11 @@
 // POST /partida
 
 const cors = require('cors')
-
+const { v4: uuidv4 } = require('uuid');
 const express = require('express');
 const fs = require('fs');
 const app = express();
 const path = require('path');
-const { stringify } = require('querystring');
 
 
 const port = 3000;
@@ -52,8 +51,8 @@ app.put('/addQuestion', (req, res) => {
     let questions = [];
     questions = JSON.parse(data);
     console.log(questions)
-    const existingIds = questions.preguntes.map(x => x.id);
-    const newId = existingIds.length > 0 ? Math.max(...existingIds) + 1 : 1;
+    const newId = uuidv4();
+
     newQuestion.id = newId;
 
     questions.preguntes.push(newQuestion);
@@ -75,7 +74,7 @@ app.put('/addQuestion', (req, res) => {
 
 app.put('/updateQuestions/:id', (req, res) => {
 
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
 
   const updateQuestion = JSON.stringify(req.body);
 
@@ -98,34 +97,30 @@ app.put('/updateQuestions/:id', (req, res) => {
            return res.status(500).send('Error al sobrescribir el archivo.');
          }
    
-         console.log('Pregunta actualizada con éxito.');
-         return res.status(200).send('Pregunta actualizada con éxito.');
+         console.log(objetos);
+         return res.status(200).send(objetos);
        });
     })
 });
 
-app.delete('/deleteQuestions/:id', (req, res) =>{
+app.delete('/deleteQuestions/:id', (req, res) => {
+  const id = req.params.id; 
 
-    const id = parseInt(req.params.id); 
+  fs.readFile('./all.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error al leer el archivo: ' + err); // Enviar mensaje de error
+    }
 
-    fs.readFile('./all.json', 'utf8', (err, data) => {
-      if (err) {
-        res.status('Error al leer el archivo:', err);
-      }
-  
-      let objetos = JSON.parse(data);
-  
-      objetos.preguntes = objetos.preguntes.filter(objeto => objeto.id !== id);
 
-      fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
-        if (err) {
-          res.status('Error al sobrescribir el archivo:', err);
-        } else {
-          res.status(`Objeto con ID ${id} eliminado con éxito.`);
-        }
-      });
+    let objetos = JSON.parse(data);
+
+    objetos.preguntes = objetos.preguntes.filter(objeto => objeto.id !== id);
+
+    fs.writeFile('./all.json', JSON.stringify(objetos, null, 2), (err) => {
+     res.status(200).send(`Objeto con ID ${id} eliminado con éxito.`);
     });
   });
+});
 
     
 app.get('/getImage/:route', (req, res) => {
@@ -144,4 +139,15 @@ app.get('/getImage/:route', (req, res) => {
 app.listen(port, () => {
   console.log("Port: " + port);
   console.log("Link: http://localhost:" + port);
+});
+
+app.get('/final', (req, res) => {
+
+  var spawn = require("child_process").spawn;
+
+  var process = spawn('python3',["./example.py"]);
+
+  process.stdout.on('data', function(data) {
+    res.send(data.toString());
+    })
 });

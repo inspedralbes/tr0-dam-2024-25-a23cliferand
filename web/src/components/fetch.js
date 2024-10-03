@@ -10,6 +10,8 @@ export function getImageUrl(imageName){
 export async function guardarPreguntaNueva(preguntaPlatilla){
 
     let nuevaPregunta = preguntaPlatilla.value
+
+    let idd
     
     nuevaPregunta = JSON.stringify(nuevaPregunta)
     
@@ -21,7 +23,18 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
         },
      body: nuevaPregunta
     })
-};
+    .then(response => response.text)
+    .then(data => {
+         idd = data;
+        })
+    .catch(error => {
+        console.error("No va: " + error);
+    });
+
+    preguntaPlatilla.value.id = idd
+
+    console.log(preguntaPlatilla.value.id)
+}
 
 export async function updateQuestion(id, preguntaEditada){
   
@@ -49,5 +62,13 @@ export async function Eliminar(id){
      method: 'DELETE',
    })
    .then(res => console.log(res))
-  .catch(error => console.error('Error:', error));
+   .catch(error => console.error('Error:', error));
 };
+
+//export async function final(missage) {
+//  fetch('http://localhost:3000/final')
+//        .then(response => response.text)
+//        .then(data => {missage = data;
+//        })
+//        window.location.reload()
+//    };

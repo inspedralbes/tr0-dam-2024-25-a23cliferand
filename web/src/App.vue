@@ -16,7 +16,7 @@
         </table>
         
         <br>
-        <button @click="mostrarFormularioEdit(preguntaItem.id - 1)" style="margin: 1em auto" class="btn">Modificar</button>
+        <button @click="mostrarFormularioEdit(index)" style="margin: 1em auto" class="btn">Modificar</button>
         <button @click="EliminarQuestion(preguntaItem.id)" style="margin: 1em auto" class="btn">Borrar</button>        
         <br>
 
@@ -47,14 +47,16 @@
         </div>
       </div>
         <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id - 1), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
       </div>
     </div>
+    <br>
+    <button @click="preguntaCrear = true" style="margin: 1em auto" type="submit" class="btn_float">Crear Pregunta</button>
+    <br>
 
-    <button @click="preguntaCrear = true" style="margin: 1em auto" type="submit" class="btn">Crear Pregunta</button>
 
     <!-- Formulario pa crear -->
-    <div v-if="preguntaCrear" class="pregunta-edit-container">
+    <div v-if="preguntaCrear" class="floating-container">
           <h3> Crear Pregunta</h3>
           <div class="form-group">
               <label for="pregunta">Pregunta:</label>
@@ -99,7 +101,6 @@ import * as fetchFunctions from './components/fetch.js';
 
 let preguntaOriginal = ref(null); 
 const preguntaEditable = ref(null);
-const preguntaABorrar = ref(null);
 let preguntaEditada = ref(null); 
 const preguntaCrear = ref(false);
 
@@ -131,23 +132,19 @@ const preguntaPlatilla = ref({
   imatge: "???"
 });
 
-    function guardarCambios(id){
-    
-    let updatePreg = preguntes.value
-      
-    console.log(preguntes.value)
-
-    updatePreg = updatePreg.value.findIndex(pregunta => pregunta.id === id);
-    
-    
-    console.log(updatePreg)
-    
-    updatePreg = JSON.stringify(updatePreg)
-    
-    fetchFunctions.updateQuestion(id, updatePreg)
-
+function guardarCambios(id) {
+    let updatePreg = preguntes.value;
+    const preguntaIndex = updatePreg.findIndex(pregunta => pregunta.id === id);
+    updatePreg[preguntaIndex].text = preguntaEditable.value;
+    const updatedPreg = JSON.stringify(updatePreg[preguntaIndex]);
+    fetchFunctions.updateQuestion(id, updatedPreg);
     preguntaEditable.value = null;
+    //window.location.reload()
 };
+
+function restaurarPreguntas(id) {
+  preguntes.value[id] = JSON.parse(JSON.stringify(preguntaOriginal.value));
+}
 
 function EliminarQuestion(id){
   fetchFunctions.Eliminar(id);
@@ -162,7 +159,6 @@ function EliminarQuestion(id){
   preguntaCrear.value = null;
   preguntes.value.push(preguntaPlatilla.value)
   console.log(preguntes)
-  //window.location.reload()
   preguntaPlatilla.value = {
         id: 0,
         pregunta: "",
@@ -176,9 +172,6 @@ function EliminarQuestion(id){
     };
   }
 
-function restaurarPreguntas(id) {
-  preguntes.value[id] = JSON.parse(JSON.stringify(preguntaOriginal.value));
-}
 
 </script>
 
@@ -261,5 +254,37 @@ button.confirm {
 .checkbox-label {
   display: flex;
   align-items: center;
+}
+
+.floating-container {
+    position: fixed;
+    right: 20px; /* Ajusta la distancia desde la derecha */
+    top: 50%; /* Centrado vertical */
+    transform: translateY(-50%); /* Para que quede perfectamente centrado */
+    z-index: 1000; /* Para asegurarte que quede por encima de otros elementos */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea a la derecha */
+    border: 1px solid #ccc;
+    padding: 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 400px;
+    
+}
+
+.btn_float {
+    position: fixed;
+    right: 20px; /* Ajusta la distancia desde la derecha */
+    top: 50%; /* Centrado vertical */
+    transform: translateY(-50%); /* Para que quede perfectamente centrado */
+    z-index: 1000; /* Para que el botón esté encima de otros elementos */
+    background: #d61010;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 </style>
