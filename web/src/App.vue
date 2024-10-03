@@ -135,7 +135,10 @@ const preguntaPlatilla = ref({
     
     let updatePreg = preguntes.value
       
-    updatePreg = updatePreg.find(objeto => objeto.id == id);
+    console.log(preguntes.value)
+
+    updatePreg = updatePreg.value.findIndex(pregunta => pregunta.id === id);
+    
     
     console.log(updatePreg)
     
