@@ -65,10 +65,10 @@ export async function Eliminar(id){
    .catch(error => console.error('Error:', error));
 };
 
-//export async function final(missage) {
-//  fetch('http://localhost:3000/final')
-//        .then(response => response.text)
-//        .then(data => {missage = data;
-//        })
-//        window.location.reload()
-//    };
+export async function final(container){
+  fetch('http://localhost:3000/final')
+      .then(response => response.text())
+      .then(data => {container = data; console.log(container);
+      })
+      //window.location.reload()
+  };

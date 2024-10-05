@@ -53,8 +53,11 @@
     <br>
     <button @click="preguntaCrear = true" style="margin: 1em auto" type="submit" class="btn_float">Crear Pregunta</button>
     <br>
+    <button @click="fetchFunctions.final(container)" style="margin: 1em auto" type="submit" class="btn">DSADSADS</button>
+    <label>Text {{ container }}</label>
 
 
+    
     <!-- Formulario pa crear -->
     <div v-if="preguntaCrear" class="floating-container">
           <h3> Crear Pregunta</h3>
@@ -103,6 +106,7 @@ let preguntaOriginal = ref(null);
 const preguntaEditable = ref(null);
 let preguntaEditada = ref(null); 
 const preguntaCrear = ref(false);
+let container = ref(null);
 
 const preguntes = ref()
 
@@ -111,6 +115,8 @@ onBeforeMount(() => {
   console.log("Create")
 
   fetchFunctions.getWeb(preguntes)
+
+  
 })
 
 function mostrarFormularioEdit(id){
@@ -258,13 +264,13 @@ button.confirm {
 
 .floating-container {
     position: fixed;
-    right: 20px; /* Ajusta la distancia desde la derecha */
-    top: 50%; /* Centrado vertical */
-    transform: translateY(-50%); /* Para que quede perfectamente centrado */
-    z-index: 1000; /* Para asegurarte que quede por encima de otros elementos */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Alinea a la derecha */
+    align-items: flex-end;
     border: 1px solid #ccc;
     padding: 16px;
     border-radius: 8px;
@@ -275,10 +281,10 @@ button.confirm {
 
 .btn_float {
     position: fixed;
-    right: 20px; /* Ajusta la distancia desde la derecha */
-    top: 50%; /* Centrado vertical */
-    transform: translateY(-50%); /* Para que quede perfectamente centrado */
-    z-index: 1000; /* Para que el botón esté encima de otros elementos */
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
     background: #d61010;
     color: #fff;
     border: none;
