@@ -1,9 +1,8 @@
 export function getImageUrl(imageName){
     //Foto default
-    if(imageName == "???"){
-      return `http://localhost:3000/getImage/noimage.jpg`;
-    }
-  
+    //if(imageName == "???"){
+    //  return `http://localhost:3000/getImage/noimage.jpg`;
+    //}
     return imageName;
   };
 

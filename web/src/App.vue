@@ -30,15 +30,15 @@
     
           <div class="form-group">
             <label for="imagen">URL de la Imagen:</label>
-            <textarea v-model="preguntaEditada.imatge" id="imagen" placeholder="Editar URL de la imagen" class="textarea-field"></textarea>
+            <textarea v-model="preguntaEditada.imatge" id="imagen" placeholder="Editar URL de la imatge" class="textarea-field"></textarea>
           </div>
 
           <h4>Respuestas:</h4>
           <div class="respuestas-container">
             <div v-for="(resposta, id) in preguntaItem.respostes" :key="id" class="respuesta-group">
               <div class="form-group">
-                <label :for="'respuesta-' + id">Respuesta:</label>
-                <input v-model="resposta.resposta" :id="'respuesta-' + id" placeholder="Editar respuesta" class="input-field" />
+                <label :for="'respuesta-' + id">Resposta:</label>
+                <input v-model="resposta.resposta" :id="'respuesta-' + id" placeholder="Editar resposta" class="input-field" />
               </div>
             <label class="checkbox-label">
             Correcta: 
@@ -47,14 +47,12 @@
         </div>
       </div>
         <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancel·lar</button>
       </div>
     </div>
     <br>
     <button @click="preguntaCrear = true" style="margin: 1em auto" type="submit" class="btn_float">Crear Pregunta</button>
     <br>
-    <button @click="fetchFunctions.final(container)" style="margin: 1em auto" type="submit" class="btn">DSADSADS</button>
-    <label>Text {{ container }}</label>
 
 
     
@@ -75,7 +73,7 @@
           <div class="respuestas-container">
             <div v-for="(resposta, id) in preguntaPlatilla.respostes" :key="id" class="respuesta-group">
               <div class="form-group">
-                <label :for="'respuesta-' + id">Respuesta:</label>
+                <label :for="'respuesta-' + id">Resposta:</label>
                 <input v-model="resposta.resposta" :id="'respuesta-' + id" placeholder="Editar respuesta" class="input-field" />
               </div>
             <label class="checkbox-label">
@@ -84,7 +82,7 @@
           </label>
         </div>
         <button @click="preguntaCrear = null, PreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
-        <button @click="preguntaCrear = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancelar</button>
+        <button @click="preguntaCrear = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancel·lar</button>
       </div>
       </div>
   </div>
@@ -135,7 +133,7 @@ const preguntaPlatilla = ref({
      { id: 3, resposta: "", correcta: false },
      { id: 4, resposta: "", correcta: false }
     ],
-  imatge: "???"
+  imatge: "http://localhost:3000/getImage/noimage.jpg"
 });
 
 function guardarCambios(id) {
@@ -174,7 +172,7 @@ function EliminarQuestion(id){
             { id: 3, resposta: "", correcta: false },
             { id: 4, resposta: "", correcta: false }
         ],
-        imatge: "???"
+        imatge: "http://localhost:3000/getImage/noimage.jpg"
     };
   }
 
