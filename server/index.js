@@ -16,6 +16,7 @@ const path = require('path');
 const port = 3000;
 
 app.use(express.json());
+app.use(express.text());
 app.use(cors()); 
 
 
@@ -70,7 +71,6 @@ app.put('/addQuestion', (req, res) => {
     });
   });
 });
- 
 
 app.put('/updateQuestions/:id', (req, res) => {
 
@@ -151,3 +151,65 @@ app.get('/final', (req, res) => {
     res.send(data.toString());
     })
 });
+
+//Comprobar las respuestas
+app.put('/putRespostes', (req, res) => {
+  let respostes = req.body;
+
+  let solucions = { correctes: 0, incorrectes: 0 };
+
+  fs.readFile('./all.json', 'utf8', (err, data) => {
+    if (err) {
+      return res.status(500).send('Error al leer el archivo: ' + err);
+    }
+
+    let objetos = JSON.parse(data);
+    let preguntes = objetos.preguntes;
+
+    for (let i = 0; i < respostes.length; i++) {
+      for (let x = 0; x < preguntes.length; x++) {
+        if (respostes[i].preguntaID === preguntes[x].id) {
+          for (let y = 0; y < preguntes[x].respostes.length; y++) {
+            if (respostes[i].respostaID === preguntes[x].respostes[y].id) {
+              if (preguntes[x].respostes[y].correcta === true) {
+                solucions.correctes++;
+              } else {
+                solucions.incorrectes++;
+              }
+            }
+          }
+        }
+      }
+    }
+    let all = {respostes, solucions}
+    saveJsonToFile(all)
+    return res.status(200).json(solucions);
+  });
+});
+
+function saveJsonToFile(jsonObject) {
+  // Crear un identificador para el archivo
+  const identificador = uuidv4();
+  // Get the current date and time
+  const now = new Date();
+  //Formato Europeo (no de los americanos esos)
+  const day = String(now.getDate()).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const year = now.getFullYear();
+  const date = `${day}-${month}-${year}`;
+  //Hora actual
+  const time = now.toTimeString().split(' ')[0].replace(/:/g, '-'); 
+  const name = `${identificador}-${date}-${time}`;
+
+  const dirPath = path.join(__dirname, './data', date);
+
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+
+  // Create the file path
+  const filePath = path.join(dirPath, `${name}.json`);
+
+  // Write the JSON object to the file
+  fs.writeFileSync(filePath, JSON.stringify(jsonObject, null, 2), 'utf8');
+}
