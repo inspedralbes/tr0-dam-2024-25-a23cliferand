@@ -13,7 +13,7 @@ const app = express();
 const path = require('path');
 
 
-const port = 3000;
+const port = 26969;
 
 app.use(express.json());
 app.use(express.text());
@@ -138,7 +138,7 @@ app.get('/getImage/:route', (req, res) => {
 
 app.listen(port, () => {
   console.log("Port: " + port);
-  console.log("Link: http://localhost:" + port);
+  console.log("Link: http://dam.inspedralbes.cat:" + port);
 });
 
 app.get('/final', (req, res) => {
@@ -167,20 +167,28 @@ app.put('/putRespostes', (req, res) => {
     let preguntes = objetos.preguntes;
 
     for (let i = 0; i < respostes.length; i++) {
-      for (let x = 0; x < preguntes.length; x++) {
-        if (respostes[i].preguntaID === preguntes[x].id) {
-          for (let y = 0; y < preguntes[x].respostes.length; y++) {
-            if (respostes[i].respostaID === preguntes[x].respostes[y].id) {
-              if (preguntes[x].respostes[y].correcta === true) {
-                solucions.correctes++;
-              } else {
-                solucions.incorrectes++;
-              }
-            }
+      let resposta = respostes[i];
+    
+      if (resposta.respostaID === 0) {
+        solucions.incorrectes++;
+        continue;
+      }
+    
+      let pregunta = preguntes.find(p => p.id === resposta.preguntaID);
+    
+      if (pregunta) {
+        let respostaCorrecta = pregunta.respostes.find(r => r.id === resposta.respostaID);
+    
+        if (respostaCorrecta) {
+          if (respostaCorrecta.correcta === true) {
+            solucions.correctes++;
+          } else {
+            solucions.incorrectes++;
           }
         }
       }
     }
+
     let all = {respostes, solucions}
     saveJsonToFile(all)
     return res.status(200).json(solucions);
@@ -188,28 +196,23 @@ app.put('/putRespostes', (req, res) => {
 });
 
 function saveJsonToFile(jsonObject) {
-  // Crear un identificador para el archivo
-  const identificador = uuidv4();
-  // Get the current date and time
+  // Obtener la fecha y hora actual
   const now = new Date();
-  //Formato Europeo (no de los americanos esos)
   const day = String(now.getDate()).padStart(2, '0');
-  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const month = String(now.getMonth() + 1).padStart(2, '0'); // Los meses son base 0
   const year = now.getFullYear();
-  const date = `${day}-${month}-${year}`;
-  //Hora actual
-  const time = now.toTimeString().split(' ')[0].replace(/:/g, '-'); 
-  const name = `${identificador}-${date}-${time}`;
+  const date = `${day}-${month}-${year}`; // DD-MM-YYYY
+  const time = now.toTimeString().split(' ')[0].replace(/:/g, '_'); // HH_MM_SS
 
-  const dirPath = path.join(__dirname, './data', date);
-
+  // Crear la ruta del directorio
+  const dirPath = path.join(__dirname, 'data', date);
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  // Create the file path
-  const filePath = path.join(dirPath, `${name}.json`);
+  // Crear la ruta del archivo
+  const filePath = path.join(dirPath, `${time}.json`);
 
-  // Write the JSON object to the file
+  // Escribir el objeto JSON en el archivo
   fs.writeFileSync(filePath, JSON.stringify(jsonObject, null, 2), 'utf8');
 }

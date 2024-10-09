@@ -6,7 +6,9 @@
       <div v-for="(preguntaItem, index) in preguntes" :key="preguntaItem.id">
         <h2>{{ preguntaItem.pregunta }}</h2>
         <br>
-        <img class="marca" v-if="preguntaItem.imatge" :src="fetchFunctions.getImageUrl(preguntaItem.imatge)" alt="Imatge" width="150" />
+        <div class="image-container">
+          <img class="marca" v-if="preguntaItem.imatge" :src="fetchFunctions.getImageUrl(preguntaItem.imatge)" alt="Imatge" width="150" />
+        </div>
         <br>
         <br>
         <table>
@@ -22,7 +24,7 @@
 
         <!-- Formulario pa editar -->
         <div v-if="preguntaEditable === index" class="pregunta-edit-container">
-          <h3>Modificar Pregunta {{ preguntaItem.id }}</h3>
+          <h3>Modificar Pregunta</h3>
           <div class="form-group">
               <label for="pregunta">Pregunta:</label>
               <input v-model="preguntaEditada.pregunta" id="pregunta" placeholder="Editar pregunta" class="input-field" />
@@ -95,9 +97,7 @@
 </template>
 
 <script setup>
-
 import { ref, onBeforeMount } from 'vue';
-
 import * as fetchFunctions from './components/fetch.js';
 
 let preguntaOriginal = ref(null); 
@@ -108,13 +108,9 @@ let container = ref(null);
 
 const preguntes = ref()
 
-
 onBeforeMount(() => {
   console.log("Create")
-
   fetchFunctions.getWeb(preguntes)
-
-  
 })
 
 function mostrarFormularioEdit(id){
@@ -122,7 +118,6 @@ function mostrarFormularioEdit(id){
       preguntaOriginal.value = JSON.parse(JSON.stringify(preguntes.value[id]));
       preguntaEditada.value = JSON.parse(JSON.stringify(preguntes.value[id]));
 };
-
 
 const preguntaPlatilla = ref({
   id: 0,
@@ -133,7 +128,7 @@ const preguntaPlatilla = ref({
      { id: 3, resposta: "", correcta: false },
      { id: 4, resposta: "", correcta: false }
     ],
-  imatge: "http://localhost:3000/getImage/noimage.jpg"
+  imatge: "http://dam.inspedralbes.cat:26969/getImage/noimage.jpg"
 });
 
 function guardarCambios(id) {
@@ -158,7 +153,7 @@ function EliminarQuestion(id){
   };
 
   async function PreguntaNueva(){
-  await fetchFunctions.guardarPreguntaNueva(preguntaPlatilla);
+ await fetchFunctions.guardarPreguntaNueva(preguntaPlatilla);
   console.log(preguntes)
   preguntaCrear.value = null;
   preguntes.value.push(preguntaPlatilla.value)
@@ -172,13 +167,10 @@ function EliminarQuestion(id){
             { id: 3, resposta: "", correcta: false },
             { id: 4, resposta: "", correcta: false }
         ],
-        imatge: "http://localhost:3000/getImage/noimage.jpg"
+        imatge: "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/noimage.jpg"
     };
   }
-
-
 </script>
-
 
 <style scoped>
 h1 {
@@ -190,6 +182,9 @@ h2 {
 img.marca {
   margin-top: 10px;
   margin-bottom: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button.btn {
@@ -204,7 +199,7 @@ button.btn {
     transition: color 0.4s linear;
     position: relative;
     overflow: hidden;
-    z-index: 1
+    z-index: 1;
 }
 
 button.confirm {
@@ -218,7 +213,7 @@ button.confirm {
     transition: color 0.4s linear;
     position: relative;
     overflow: hidden;
-    z-index: 1
+    z-index: 1;
 }
 .pregunta-edit-container {
   border: 1px solid #ccc;
@@ -274,7 +269,6 @@ button.confirm {
     border-radius: 8px;
     background-color: #f9f9f9;
     max-width: 400px;
-    
 }
 
 .btn_float {

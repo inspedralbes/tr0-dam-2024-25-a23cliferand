@@ -1,7 +1,7 @@
 export function getImageUrl(imageName){
     //Foto default
     //if(imageName == "???"){
-    //  return `http://localhost:3000/getImage/noimage.jpg`;
+    //  return `http://dam.inspedralbes.cat:26969/getImage/noimage.jpg`;
     //}
     return imageName;
   };
@@ -15,7 +15,7 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
     nuevaPregunta = JSON.stringify(nuevaPregunta)
     
     
-    fetch(`http://localhost:3000/addQuestion`, {
+    fetch(`http://dam.inspedralbes.cat:26969/addQuestion`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json' 
@@ -37,7 +37,7 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
 
 export async function updateQuestion(id, preguntaEditada){
   
-  fetch(`http://localhost:3000/updateQuestions/` + id, {
+  fetch(`http://dam.inspedralbes.cat:26969/updateQuestions/` + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json' 
@@ -49,7 +49,7 @@ export async function updateQuestion(id, preguntaEditada){
 
 
 export async function getWeb(preguntes){
-    fetch('http://localhost:3000/getQuestions')
+    fetch('http://dam.inspedralbes.cat:26969/getQuestions')
         .then(response => response.json())
         .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value);
         })
@@ -57,7 +57,7 @@ export async function getWeb(preguntes){
     };
 
 export async function Eliminar(id){
-   fetch(`http://localhost:3000/deleteQuestions/` + id, {
+   fetch(`http://dam.inspedralbes.cat:26969/deleteQuestions/` + id, {
      method: 'DELETE',
    })
    .then(res => console.log(res))
@@ -65,7 +65,7 @@ export async function Eliminar(id){
 };
 
 export async function final(container){
-  fetch('http://localhost:3000/final')
+  fetch('http://dam.inspedralbes.cat:26969/final')
       .then(response => response.text())
       .then(data => {container = data; console.log(container);
       })
