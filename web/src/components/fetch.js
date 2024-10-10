@@ -64,8 +64,8 @@ export async function Eliminar(id){
    .catch(error => console.error('Error:', error));
 };
 
-export async function final(container){
-  fetch('http://dam.inspedralbes.cat:26969/final')
+export async function getGrafics(container){
+  fetch('http://dam.inspedralbes.cat:26969/getGrafics')
       .then(response => response.text())
       .then(data => {container = data; console.log(container);
       })

@@ -1,7 +1,7 @@
 {
   "preguntes": [
     {
-      "id": "5ff43edc-99b2-46d0-8d13-dbc3eee65000",
+      "id": "1",
       "pregunta": "Quina marca de cotxes utilitza el lema 'Ultimate Driving Machine'?",
       "respostes": [
         {
@@ -29,7 +29,7 @@
       "text": null
     },
     {
-      "id": "cb47d214-ff20-447c-9719-e83329f1167e",
+      "id": "2",
       "pregunta": "Quina marca de supermercats utilitza el lema 'El ticket más bajo'?",
       "respostes": [
         {
@@ -56,7 +56,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Lidl.png"
     },
     {
-      "id": "6fe09f37-5309-4665-b228-8e15ed82e80c",
+      "id": "3",
       "pregunta": "Quina marca de refrescos té el lema 'Open Happiness'?",
       "respostes": [
         {
@@ -83,7 +83,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Coca-Cola.png"
     },
     {
-      "id": "5e197d66-d082-46ba-847b-31f4a4009db4",
+      "id": "4",
       "pregunta": "Quina marca de telefonia utilitza el lema 'Reconectando'?",
       "respostes": [
         {
@@ -110,7 +110,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Telefonica.png"
     },
     {
-      "id": "2ce418307-e6a3-46ef-8b37-1b30fc2e4617",
+      "id": "5",
       "pregunta": "Quina cadena de tendas de tecnologia utilitza el lema 'Yo no soy tonto'?",
       "respostes": [
         {
@@ -137,7 +137,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Mediamark.png"
     },
     {
-      "id": "0ac87671-93ab-4258-a0cf-ceab6d49db6b",
+      "id": "6",
       "pregunta": "Quina marca de càmeres utilitza el lema 'Capture Every Moment'?",
       "respostes": [
         {
@@ -164,7 +164,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/noimage.jpg"
     },
     {
-      "id": "94ec6fb4-7978-4985-a5b8-dbc77b1e34b0",
+      "id": "7",
       "pregunta": "Quina marca de cotxes utilitza el lema 'Changes for the Better'?",
       "respostes": [
         {
@@ -191,7 +191,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Mitsubishi.png"
     },
     {
-      "id": "731db366-21c9-4d05-8ee7-aefa6c1d25b9",
+      "id": "8",
       "pregunta": "Quina marca de productes de cosmetica utilitza el lema 'Because You're Worth It'?",
       "respostes": [
         {
@@ -218,7 +218,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/noimage.jpg"
     },
     {
-      "id": "a52c2cd9-589f-4911-af57-0d189aeb759c",
+      "id": "9",
       "pregunta": "Quina marca de càpsules de cafè utilitza el lema 'What Else?'?",
       "respostes": [
         {
@@ -245,7 +245,7 @@
       "imatge": "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/Nespresso.png"
     },
     {
-      "id": "2767fcfe-0af3-4d3c-8c56-ddee7397f5b6",
+      "id": "10",
       "pregunta": "Quina marca de xocolates utilitza el lema 'Have a Break, Have a KitKat'?",
       "respostes": [
         {

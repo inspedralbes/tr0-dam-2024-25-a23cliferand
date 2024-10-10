@@ -52,7 +52,14 @@ app.put('/addQuestion', (req, res) => {
     let questions = [];
     questions = JSON.parse(data);
     console.log(questions)
-    const newId = uuidv4();
+    
+    let newId;
+    for (let i = 1; i <= 999; i++) {
+      if (!questions.preguntes.some(pregunta => pregunta.id === i.toString())) {
+      newId = i.toString();
+      break;
+      }
+    }
 
     newQuestion.id = newId;
 
@@ -97,7 +104,6 @@ app.put('/updateQuestions/:id', (req, res) => {
            return res.status(500).send('Error al sobrescribir el archivo.');
          }
    
-         console.log(objetos);
          return res.status(200).send(objetos);
        });
     })
@@ -136,16 +142,11 @@ app.get('/getImage/:route', (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log("Port: " + port);
-  console.log("Link: http://dam.inspedralbes.cat:" + port);
-});
-
-app.get('/final', (req, res) => {
+app.get('/getGrafics', (req, res) => {
 
   var spawn = require("child_process").spawn;
 
-  var process = spawn('python3',["./example.py"]);
+  var process = spawn('python',["./grafics.py"]);
 
   process.stdout.on('data', function(data) {
     res.send(data.toString());
@@ -216,3 +217,9 @@ function saveJsonToFile(jsonObject) {
   // Escribir el objeto JSON en el archivo
   fs.writeFileSync(filePath, JSON.stringify(jsonObject, null, 2), 'utf8');
 }
+
+
+app.listen(port, () => {
+  console.log("Port: " + port);
+  console.log("Link: http://dam.inspedralbes.cat:" + port);
+});

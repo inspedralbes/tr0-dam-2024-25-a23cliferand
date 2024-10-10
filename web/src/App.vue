@@ -1,7 +1,13 @@
 <template>
   <div>
     <h1>CRUD Questions</h1>
-
+    <h2>Estadístiques</h2>
+    <br><hr><br>
+    <table>
+      <td><img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/falladas.png" /></td>
+      <td><img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/quesito.png" /></td>
+    </table>
+    <br><hr><br>
     <div v-if="preguntes && preguntes.length > 0">
       <div v-for="(preguntaItem, index) in preguntes" :key="preguntaItem.id">
         <h2>{{ preguntaItem.pregunta }}</h2>
@@ -31,7 +37,7 @@
           </div>
     
           <div class="form-group">
-            <label for="imagen">URL de la Imagen:</label>
+            <label for="imagen">URL de la Imatge:</label>
             <textarea v-model="preguntaEditada.imatge" id="imagen" placeholder="Editar URL de la imatge" class="textarea-field"></textarea>
           </div>
 
@@ -48,7 +54,7 @@
           </label>
         </div>
       </div>
-        <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
+        <button @click="preguntaEditable = null, guardarCambios(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Salvar</button>
         <button @click="preguntaEditable = null, restaurarPreguntas(preguntaItem.id), fetchFunctions.getWeb(preguntes)" class="confirm">Cancel·lar</button>
       </div>
     </div>
@@ -67,8 +73,8 @@
           </div>
     
           <div class="form-group">
-            <label for="imagen">URL de la Imagen:</label>
-            <textarea v-model="preguntaPlatilla.imatge" id="imagen" placeholder="Editar URL de la imagen" class="textarea-field"></textarea>
+            <label for="imagen">URL de la Imatge:</label>
+            <textarea v-model="preguntaPlatilla.imatge" id="imagen" placeholder="Editar URL de la Imatge" class="textarea-field"></textarea>
           </div>
 
           <h4>Respuestas:</h4>
@@ -83,7 +89,7 @@
             <input type="checkbox" v-model="resposta.correcta" />
           </label>
         </div>
-        <button @click="preguntaCrear = null, PreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Guardar</button>
+        <button @click="preguntaCrear = null, PreguntaNueva(), fetchFunctions.getWeb(preguntes)" class="confirm">Salvar</button>
         <button @click="preguntaCrear = null, fetchFunctions.getWeb(preguntes)" class="confirm">Cancel·lar</button>
       </div>
       </div>
