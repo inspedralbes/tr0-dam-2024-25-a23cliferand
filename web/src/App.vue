@@ -1,13 +1,18 @@
 <template>
-  <div>
+  <div class="header-container">
     <h1>CRUD Questions</h1>
+    <br>
     <h2>Estadístiques</h2>
+    <div class="stats-container">
+      <div class="stat-item">
+        <img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/falladas.png" alt="Falladas" width="550" height="550" />
+      </div>
+      <div class="stat-item">
+        <img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/quesito.png" alt="Quesito" width="550" height="550" />
+      </div>
+    </div>
     <br><hr><br>
-    <table>
-      <td><img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/falladas.png" /></td>
-      <td><img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/quesito.png" /></td>
-    </table>
-    <br><hr><br>
+    <h1>Preguntes</h1>
     <div v-if="preguntes && preguntes.length > 0">
       <div v-for="(preguntaItem, index) in preguntes" :key="preguntaItem.id">
         <h2>{{ preguntaItem.pregunta }}</h2>
@@ -291,4 +296,17 @@ button.confirm {
     font-size: 16px;
     cursor: pointer;
 }
+.stat-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 </style>
