@@ -1,0 +1,48 @@
+{
+  "respostes": [
+    {
+      "preguntaID": "1",
+      "respostaID": 1
+    },
+    {
+      "preguntaID": "2",
+      "respostaID": 1
+    },
+    {
+      "preguntaID": "3",
+      "respostaID": 3
+    },
+    {
+      "preguntaID": "4",
+      "respostaID": 2
+    },
+    {
+      "preguntaID": "5",
+      "respostaID": 1
+    },
+    {
+      "preguntaID": "6",
+      "respostaID": 2
+    },
+    {
+      "preguntaID": "7",
+      "respostaID": 1
+    },
+    {
+      "preguntaID": "8",
+      "respostaID": 1
+    },
+    {
+      "preguntaID": "9",
+      "respostaID": 2
+    },
+    {
+      "preguntaID": "10",
+      "respostaID": 1
+    }
+  ],
+  "solucions": {
+    "correctes": 6,
+    "incorrectes": 4
+  }
+}

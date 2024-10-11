@@ -1,19 +1,24 @@
 <template>
   <div class="header-container">
     <h1>CRUD Questions</h1>
-    <br>
-    <h2>Estadístiques</h2>
-    <div class="stats-container">
-      <div class="stat-item">
-        <img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/falladas.png" alt="Falladas" width="550" height="550" />
-      </div>
-      <div class="stat-item">
-        <img src="http://a23cliferand.dam.inspedralbes.cat:26969/getImage/quesito.png" alt="Quesito" width="550" height="550" />
-      </div>
-    </div>
-    <br><hr><br>
+    
     <h1>Preguntes</h1>
     <div v-if="preguntes && preguntes.length > 0">
+    <br>
+    <div v-if="preguntes && preguntes.length > 0">
+    <h2>Estadístiques</h2>
+    <button @click="updateGrafics(container)" class="confirm">UPDATE</button>
+    <div class="stats-container">
+      <div class="stat-item">
+        <img src="http://localhost:26969/getImage/falladas.png" alt="Falladas" width="550" height="550" />
+      </div>
+      <div class="stat-item">
+        <img src="http://localhost:26969/getImage/quesito.png" alt="Quesito" width="550" height="550" />
+      </div>
+    </div>
+    </div>
+
+    <br><hr><br>
       <div v-for="(preguntaItem, index) in preguntes" :key="preguntaItem.id">
         <h2>{{ preguntaItem.pregunta }}</h2>
         <br>
@@ -122,6 +127,7 @@ const preguntes = ref()
 onBeforeMount(() => {
   console.log("Create")
   fetchFunctions.getWeb(preguntes)
+  startTimer()
 })
 
 function mostrarFormularioEdit(id){
@@ -178,9 +184,28 @@ function EliminarQuestion(id){
             { id: 3, resposta: "", correcta: false },
             { id: 4, resposta: "", correcta: false }
         ],
-        imatge: "http://a23cliferand.dam.inspedralbes.cat:26969/getImage/noimage.jpg"
+        imatge: "http://localhost:26969/getImage/noimage.jpg"
     };
   }
+
+  const updateGrafics = async () => {
+    await fetchFunctions.getGrafics(container.value);
+  };
+
+  // UPDATE SCRIPT
+  let timer = null; // Para almacenar el intervalo
+
+function checkTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+  if (hours === 23 && minutes === 59) {
+    updateGrafics(container); // Aquí especificas tu contenedor
+  }
+}
+
+function startTimer() {  timer = setInterval(checkTime, 60000); }
 </script>
 
 <style scoped>

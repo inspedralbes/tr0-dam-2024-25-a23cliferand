@@ -1,7 +1,7 @@
 export function getImageUrl(imageName){
     //Foto default
     //if(imageName == "???"){
-    //  return `http://dam.inspedralbes.cat:26969/getImage/noimage.jpg`;
+    //  return `http://localhost:26969/getImage/noimage.jpg`;
     //}
     return imageName;
   };
@@ -15,7 +15,7 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
     nuevaPregunta = JSON.stringify(nuevaPregunta)
     
     
-    fetch(`http://dam.inspedralbes.cat:26969/addQuestion`, {
+    fetch(`http://localhost:26969/addQuestion`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json' 
@@ -37,7 +37,7 @@ export async function guardarPreguntaNueva(preguntaPlatilla){
 
 export async function updateQuestion(id, preguntaEditada){
   
-  fetch(`http://dam.inspedralbes.cat:26969/updateQuestions/` + id, {
+  fetch(`http://localhost:26969/updateQuestions/` + id, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json' 
@@ -49,7 +49,7 @@ export async function updateQuestion(id, preguntaEditada){
 
 
 export async function getWeb(preguntes){
-    fetch('http://dam.inspedralbes.cat:26969/getQuestions')
+    fetch('http://localhost:26969/getQuestions')
         .then(response => response.json())
         .then(data => {preguntes.value = data.preguntes; console.log(preguntes.value);
         })
@@ -57,17 +57,21 @@ export async function getWeb(preguntes){
     };
 
 export async function Eliminar(id){
-   fetch(`http://dam.inspedralbes.cat:26969/deleteQuestions/` + id, {
+   fetch(`http://localhost:26969/deleteQuestions/` + id, {
      method: 'DELETE',
    })
    .then(res => console.log(res))
    .catch(error => console.error('Error:', error));
 };
 
-export async function getGrafics(container){
-  fetch('http://dam.inspedralbes.cat:26969/getGrafics')
-      .then(response => response.text())
-      .then(data => {container = data; console.log(container);
-      })
-      //window.location.reload()
-  };
+export async function getGrafics(container) {
+  try {
+    const response = await fetch('http://localhost:26969/getGrafics');
+    const data = await response.text();
+    container = data;
+    console.log(container);
+    window.location.reload();
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}

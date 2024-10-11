@@ -146,11 +146,12 @@ app.get('/getGrafics', (req, res) => {
 
   var spawn = require("child_process").spawn;
 
-  var process = spawn('python',["./grafics.py"]);
+  var process = spawn('python3', ["./grafics.py"]);
 
-  process.stdout.on('data', function(data) {
+  process.stdout.on('data', function (data) {
     res.send(data.toString());
-    })
+    console.log(data.toString());
+  });
 });
 
 //Comprobar las respuestas

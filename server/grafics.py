@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from datetime import datetime
 
+today = datetime.today().strftime('%d-%m-%Y')
+
 def leer_datos_de_carpeta(carpeta, archivo_all):
     datos = []
     incorrectas = []
@@ -44,17 +46,29 @@ def leer_datos_de_carpeta(carpeta, archivo_all):
 
 def generar_graficos(df, incorrectas, preguntas_dict):
 
-    # Quesito con porcentajes
-    total_correctas = df['correctes'].sum()
-    total_incorrectas = df['incorrectes'].sum()
-    plt.figure(figsize=(7, 7))
-    plt.pie([total_correctas, total_incorrectas], labels=['Correctas', 'Incorrectas'], autopct='%1.1f%%', colors=['g', 'r'])
-    plt.title('Correctas e Incorrectas %')
-    plt.tight_layout()
-    plt.savefig('./images/quesito.png')
-    plt.show()
+    # Quesito con porcentajes de una subcarpeta específica
+    hoy = today  # Cambia esto por el nombre de la subcarpeta que desees
+    df_subcarpeta = df[df['subcarpeta'] == hoy]
 
-    # Preguntas más falladas
+    if not df_subcarpeta.empty:
+        total_correctas = df_subcarpeta['correctes'].sum()
+        total_incorrectas = df_subcarpeta['incorrectes'].sum()
+        plt.figure(figsize=(7, 7))
+        plt.pie([total_correctas, total_incorrectas], labels=['Correctas', 'Incorrectas'], autopct='%1.1f%%', colors=['g', 'r'])
+        plt.title(f'Correctas e Incorrectas % (DATA: {today})')
+        plt.tight_layout()
+        plt.savefig(f'./statistics/{today}.png')
+        plt.savefig('./images/quesito.png')
+    else:
+        print("no dates")
+        plt.figure(figsize=(7, 7))
+        plt.pie([1], labels=['No dades'],autopct='%1.1f%%', colors=['grey'])
+        plt.title(f'Correctas e Incorrectas % (DATA: {today})')
+        plt.tight_layout()
+        plt.savefig(f'./statistics/{today}.png')
+        plt.savefig('./images/quesito.png')
+
+    # Falladas
     contador = Counter(incorrectas)
     ids = list(contador.keys())
     frecuencias = list(contador.values())
@@ -72,14 +86,15 @@ def generar_graficos(df, incorrectas, preguntas_dict):
         plt.ylabel('Frecuencia de Fallos')
         plt.title('Preguntas Más Falladas')
         plt.xticks(rotation=90)
-        plt.tight_layout() 
+        plt.tight_layout()
         plt.savefig('./images/falladas.png')
-        plt.show()
     else:
         print("No hay preguntas incorrectas para mostrar.")
 
-carpeta_datos = './data'
+carpeta_datos = './data/'
 archivo_all = './all.json'
 
 df, incorrectas, preguntas_dict = leer_datos_de_carpeta(carpeta_datos, archivo_all)
 generar_graficos(df, incorrectas, preguntas_dict)
+
+print("ALL GOOD")
