@@ -25,7 +25,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/BMW.png",
+      "imatge": "http://192.168.1.137:26969/getImage/BMW.png",
       "text": null
     },
     {
@@ -53,7 +53,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Lidl.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Lidl.png"
     },
     {
       "id": "3",
@@ -80,7 +80,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Coca-Cola.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Coca-Cola.png"
     },
     {
       "id": "4",
@@ -107,7 +107,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Telefonica.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Telefonica.png"
     },
     {
       "id": "5",
@@ -134,7 +134,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Mediamark.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Mediamark.png"
     },
     {
       "id": "6",
@@ -161,7 +161,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/noimage.jpg"
+      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
     },
     {
       "id": "7",
@@ -188,7 +188,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Mitsubishi.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Mitsubishi.png"
     },
     {
       "id": "8",
@@ -215,7 +215,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/noimage.jpg"
+      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
     },
     {
       "id": "9",
@@ -242,7 +242,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/Nespresso.png"
+      "imatge": "http://192.168.1.137:26969/getImage/Nespresso.png"
     },
     {
       "id": "10",
@@ -269,7 +269,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.0.117:26969/getImage/noimage.jpg"
+      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
     }
   ]
 }

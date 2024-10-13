@@ -5,6 +5,8 @@
 // GET /partida
 // POST /partida
 
+const lista = [];
+
 const cors = require('cors')
 const { v4: uuidv4 } = require('uuid');
 const express = require('express');
@@ -27,13 +29,31 @@ app.get('/getQuestions', (req, res) => {
 
 });
 
-app.get('/getQuestionsAndroid', (req, res) => {
-  const data = JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
-  let preguntes = data.preguntes;
+app.get('/getQuestionsAndroid/:id', (req, res) => {
+  const id = req.params.id;
+
+  let found = lista.find(item => item.id === id);
+  let preguntes = [];
+  
+
+  if (!found) {
+    const data = JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
+    preguntes = data.preguntes;
+
+    const nuevo = {
+      id: id,
+      preguntes: preguntes
+    };
+
+    lista.push(nuevo);
+  }
+  else {
+    preguntes = found.preguntes
+  }
 
   for (let i = 0; i < preguntes.length; i++) {
     for (let x = 0; x < preguntes[i].respostes.length; x++) {
-      delete preguntes[i].respostes[x].correcta; 
+      delete preguntes[i].respostes[x].correcta;
     }
   }
 
