@@ -22,6 +22,7 @@ app.use(express.text());
 app.use(cors()); 
 
 
+//Agafar totes les preguntes
 app.get('/getQuestions', (req, res) => {
   
   const data =  JSON.parse(fs.readFileSync('./all.json', 'utf-8'));
@@ -29,6 +30,7 @@ app.get('/getQuestions', (req, res) => {
 
 });
 
+//Agafar totes les preguntes amb un ID
 app.get('/getQuestionsAndroid/:id', (req, res) => {
   const id = req.params.id;
 
@@ -60,6 +62,7 @@ app.get('/getQuestionsAndroid/:id', (req, res) => {
   res.json(preguntes);
 });
 
+//Afegir una pregunta
 app.put('/addQuestion', (req, res) => {
   const newQuestion = req.body;
 
@@ -99,6 +102,7 @@ app.put('/addQuestion', (req, res) => {
   });
 });
 
+//Modificar una pregunta (agafa el id)
 app.put('/updateQuestions/:id', (req, res) => {
 
   const id = req.params.id;
@@ -129,6 +133,7 @@ app.put('/updateQuestions/:id', (req, res) => {
     })
 });
 
+//Eliminar una pregunta (agafa el id)
 app.delete('/deleteQuestions/:id', (req, res) => {
   const id = req.params.id; 
 
@@ -148,7 +153,7 @@ app.delete('/deleteQuestions/:id', (req, res) => {
   });
 });
 
-    
+//Agafa una imatge (agafa el nom de la imatge)  
 app.get('/getImage/:route', (req, res) => {
   const route = req.params.route; 
 
@@ -161,7 +166,7 @@ app.get('/getImage/:route', (req, res) => {
       }
   });
 });
-
+//Executa el script de python per obtenir les imatges del grafics
 app.get('/getGrafics', (req, res) => {
 
   var spawn = require("child_process").spawn;
@@ -174,7 +179,7 @@ app.get('/getGrafics', (req, res) => {
   });
 });
 
-//Comprobar las respuestas
+//Comprobar las respostes
 app.put('/putRespostes', (req, res) => {
   let respostes = req.body;
 
@@ -217,6 +222,7 @@ app.put('/putRespostes', (req, res) => {
   });
 });
 
+//Guardar la partida al data
 function saveJsonToFile(jsonObject) {
   // Obtener la fecha y hora actual
   const now = new Date();
@@ -239,7 +245,7 @@ function saveJsonToFile(jsonObject) {
   fs.writeFileSync(filePath, JSON.stringify(jsonObject, null, 2), 'utf8');
 }
 
-
+//Info del port
 app.listen(port, () => {
   console.log("Port: " + port);
   console.log("Link: http://dam.inspedralbes.cat:" + port);

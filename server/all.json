@@ -25,7 +25,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/BMW.png",
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/BMW.png",
       "text": null
     },
     {
@@ -53,61 +53,61 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Lidl.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Lidl.png"
     },
     {
       "id": "3",
-      "pregunta": "Quina marca de refrescos té el lema 'Open Happiness'?",
+      "pregunta": "Quina marca de licors té el lema 'Persona a persona y familia tras familia'?",
       "respostes": [
         {
           "id": 1,
-          "resposta": "Coca-Cola",
+          "resposta": "Osborne",
           "correcta": true
         },
         {
           "id": 2,
-          "resposta": "Pepsi",
+          "resposta": "Diageo",
           "correcta": false
         },
         {
           "id": 3,
-          "resposta": "Sprite",
+          "resposta": "Zamora Grupo",
           "correcta": false
         },
         {
           "id": 4,
-          "resposta": "Fanta",
+          "resposta": "Varma",
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Coca-Cola.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/osborne.png"
     },
     {
       "id": "4",
-      "pregunta": "Quina marca de telefonia utilitza el lema 'Reconectando'?",
+      "pregunta": "Quina empresa de transport utilitza el lema mes conegut 'Compromiso de puntualidad'?",
       "respostes": [
         {
           "id": 1,
-          "resposta": "Movistar",
+          "resposta": "Renfe",
           "correcta": true
         },
         {
           "id": 2,
-          "resposta": "Vodafon",
+          "resposta": "TMB",
           "correcta": false
         },
         {
           "id": 3,
-          "resposta": "Digi",
+          "resposta": "Los Cuñados S.L.",
           "correcta": false
         },
         {
           "id": 4,
-          "resposta": "Parlem",
+          "resposta": "Metro Valencia",
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Telefonica.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/tenfe.jpeg"
     },
     {
       "id": "5",
@@ -134,15 +134,15 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Mediamark.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Mediamark.png"
     },
     {
       "id": "6",
-      "pregunta": "Quina marca de càmeres utilitza el lema 'Capture Every Moment'?",
+      "pregunta": "Quina marca de roba utilitza el lema 'There is no beauty, only beauties'?",
       "respostes": [
         {
           "id": 1,
-          "resposta": "Canon",
+          "resposta": "Zara",
           "correcta": true
         },
         {
@@ -161,7 +161,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/zara.png"
     },
     {
       "id": "7",
@@ -188,25 +188,25 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Mitsubishi.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Mitsubishi.png"
     },
     {
       "id": "8",
-      "pregunta": "Quina marca de productes de cosmetica utilitza el lema 'Because You're Worth It'?",
+      "pregunta": "Quina marca de productes de perruqueria utilitza el lema 'Fuerza es Belleza'?",
       "respostes": [
         {
           "id": 1,
-          "resposta": "L'Oréal",
+          "resposta": "Pantene",
           "correcta": true
         },
         {
           "id": 2,
-          "resposta": "Estée Lauder",
+          "resposta": "Deliplus",
           "correcta": false
         },
         {
           "id": 3,
-          "resposta": "Maybelline",
+          "resposta": "Schwarzkopf",
           "correcta": false
         },
         {
@@ -215,7 +215,7 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/pantene.jpg"
     },
     {
       "id": "9",
@@ -242,34 +242,34 @@
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/Nespresso.png"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Nespresso.png"
     },
     {
       "id": "10",
-      "pregunta": "Quina marca de xocolates utilitza el lema 'Have a Break, Have a KitKat'?",
+      "pregunta": "Quina marca de productes lactics utilitza el lema 'Yo bebo leche'?",
       "respostes": [
         {
           "id": 1,
-          "resposta": "KitKat",
+          "resposta": "Central Lechera Asturiana",
           "correcta": true
         },
         {
           "id": 2,
-          "resposta": "Mars",
+          "resposta": "Llet Nostra",
           "correcta": false
         },
         {
           "id": 3,
-          "resposta": "Snickers",
+          "resposta": "Bon Area",
           "correcta": false
         },
         {
           "id": 4,
-          "resposta": "Twix",
+          "resposta": "Puleva",
           "correcta": false
         }
       ],
-      "imatge": "http://192.168.1.137:26969/getImage/noimage.jpg"
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/asturias.jpeg"
     }
   ]
 }

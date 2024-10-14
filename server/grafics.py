@@ -46,8 +46,8 @@ def leer_datos_de_carpeta(carpeta, archivo_all):
 
 def generar_graficos(df, incorrectas, preguntas_dict):
 
-    # Quesito con porcentajes de una subcarpeta específica
-    hoy = today  # Cambia esto por el nombre de la subcarpeta que desees
+    # Quesito amb percentatges de una subcarpeta
+    hoy = today
     df_subcarpeta = df[df['subcarpeta'] == hoy]
 
     if not df_subcarpeta.empty:
@@ -74,7 +74,7 @@ def generar_graficos(df, incorrectas, preguntas_dict):
     frecuencias = list(contador.values())
     preguntas = [preguntas_dict[id] for id in ids]
 
-    # Ordenar por frecuencia
+    # Ordenar per frecuencies
     preguntas_frecuencias = sorted(zip(preguntas, frecuencias), key=lambda x: x[1], reverse=True)
 
     if preguntas_frecuencias:
@@ -90,11 +90,13 @@ def generar_graficos(df, incorrectas, preguntas_dict):
         plt.savefig('./images/falladas.png')
     else:
         print("No hay preguntas incorrectas para mostrar.")
-
+#Carpeta on esta la data
 carpeta_datos = './data/'
+#El Json de les preguntes
 archivo_all = './all.json'
 
 df, incorrectas, preguntas_dict = leer_datos_de_carpeta(carpeta_datos, archivo_all)
 generar_graficos(df, incorrectas, preguntas_dict)
 
+# Print Info
 print("ALL GOOD")

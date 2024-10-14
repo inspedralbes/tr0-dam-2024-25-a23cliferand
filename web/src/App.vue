@@ -10,10 +10,10 @@
     <button @click="updateGrafics(container)" class="confirm">UPDATE</button>
     <div class="stats-container">
       <div class="stat-item">
-        <img src="http://localhost:26969/getImage/falladas.png" alt="Falladas" width="550" height="550" />
+        <img src="http://dam.inspedralbes.cat:26969/getImage/falladas.png" alt="Falladas" width="550" height="550" />
       </div>
       <div class="stat-item">
-        <img src="http://localhost:26969/getImage/quesito.png" alt="Quesito" width="550" height="550" />
+        <img src="http://dam.inspedralbes.cat:26969/getImage/quesito.png" alt="Quesito" width="550" height="550" />
       </div>
     </div>
     </div>
@@ -184,7 +184,7 @@ function EliminarQuestion(id){
             { id: 3, resposta: "", correcta: false },
             { id: 4, resposta: "", correcta: false }
         ],
-        imatge: "http://localhost:26969/getImage/noimage.jpg"
+        imatge: "http://dam.inspedralbes.cat:26969/getImage/noimage.jpg"
     };
   }
 
