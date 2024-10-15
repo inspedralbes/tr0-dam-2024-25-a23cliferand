@@ -1,0 +1,275 @@
+{
+  "preguntes": [
+    {
+      "id": "1",
+      "pregunta": "Quina marca de cotxes utilitza el lema 'Ultimate Driving Machine'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "BMW",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Mercedes-Benz",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Audi",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Lexus",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/BMW.png",
+      "text": null
+    },
+    {
+      "id": "2",
+      "pregunta": "Quina marca de supermercats utilitza el lema 'El ticket más bajo'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Lidl",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Mercadona",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Carrefour",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Spar",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Lidl.png"
+    },
+    {
+      "id": "3",
+      "pregunta": "Quina marca de licors té el lema 'Persona a persona y familia tras familia'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Osborne",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Diageo",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Zamora Grupo",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Varma",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/osborne.png"
+    },
+    {
+      "id": "4",
+      "pregunta": "Quina empresa de transport utilitza el lema mes conegut 'Compromiso de puntualidad'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Renfe",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "TMB",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Los Cuñados S.L.",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Metro Valencia",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/tenfe.jpeg"
+    },
+    {
+      "id": "5",
+      "pregunta": "Quina cadena de tendas de tecnologia utilitza el lema 'Yo no soy tonto'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Mediamark",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Wortex",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "PcComponentes",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Fnac",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Mediamark.png"
+    },
+    {
+      "id": "6",
+      "pregunta": "Quina marca de roba utilitza el lema 'There is no beauty, only beauties'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Zara",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Nikon",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Sony",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Olympus",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/zara.png"
+    },
+    {
+      "id": "7",
+      "pregunta": "Quina marca de cotxes utilitza el lema 'Changes for the Better'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Mitsubishi",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "BMW",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Audi",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Lexus",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Mitsubishi.png"
+    },
+    {
+      "id": "8",
+      "pregunta": "Quina marca de productes de perruqueria utilitza el lema 'Fuerza es Belleza'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Pantene",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Deliplus",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Schwarzkopf",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Lancôme",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/pantene.jpg"
+    },
+    {
+      "id": "9",
+      "pregunta": "Quina marca de càpsules de cafè utilitza el lema 'What Else?'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Nespresso",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Keurig",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Dolce Gusto",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Tassimo",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/Nespresso.png"
+    },
+    {
+      "id": "10",
+      "pregunta": "Quina marca de productes lactics utilitza el lema 'Yo bebo leche'?",
+      "respostes": [
+        {
+          "id": 1,
+          "resposta": "Central Lechera Asturiana",
+          "correcta": true
+        },
+        {
+          "id": 2,
+          "resposta": "Llet Nostra",
+          "correcta": false
+        },
+        {
+          "id": 3,
+          "resposta": "Bon Area",
+          "correcta": false
+        },
+        {
+          "id": 4,
+          "resposta": "Puleva",
+          "correcta": false
+        }
+      ],
+      "imatge": "http://dam.inspedralbes.cat:26969/getImage/asturias.jpeg"
+    }
+  ]
+}
